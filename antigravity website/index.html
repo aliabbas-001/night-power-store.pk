@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Night Power - Specialized Wellness Solutions and Sexual Health Medicines. Discrete delivery across Pakistan. Quality you can trust.">
+  <meta property="og:title" content="Night Power | Specialized Health & Wellness">
+  <meta property="og:description"
+    content="Premium specialized wellness products and sexual health medicines in Pakistan. Discrete and reliable service.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.nightpower.com/">
+  <link rel="canonical" href="https://www.nightpower.com/">
+  <title>Night Power | Specialized Health & Wellness</title>
+
+  <!-- SEO Schema Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Pharmacy",
+    "name": "Night Power",
+    "url": "https://www.nightpower.com/",
+    "logo": "https://www.nightpower.com/logo.png",
+    "description": "Your ultimate destination for specialized health products and sexual wellness medicines in Pakistan.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Lahore",
+      "addressCountry": "PK"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+923336834574",
+      "contactType": "customer service"
+    }
+  }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="scripts/firebase-config.js"></script>
+</head>
+
+<body>
+
+  <!-- Announcement Bar -->
+  <div
+    style="background: var(--primary); color: white; padding: 10px; text-align: center; font-size: 0.85rem; font-weight: 500;">
+    🚚 Fast Shipping Across Pakistan | Cash on Delivery Available
+  </div>
+
+  <header>
+    <div class="container navbar">
+      <a href="index.html" class="logo">
+        NIGHT<span>POWER</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="shop.html?category=trending">Trending Now</a></li>
+          <li><a href="shop.html?category=new">New Arrivals</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="search-container"
+          style="position: relative; display: none; @media(min-width: 1024px) { display: block; }">
+          <input type="text" placeholder="Search products..."
+            style="padding: 8px 16px; border-radius: 50px; border: 1px solid var(--border-color); width: 220px;">
+          <i class="fas fa-search" style="position: absolute; right: 15px; top: 12px; color: #aaa;"></i>
+        </div>
+        <button id="theme-toggle" class="icon-btn" aria-label="Toggle Theme">
+          <i class="fas fa-moon"></i>
+        </button>
+        <a href="dashboard.html?tab=tab-wishlist" class="icon-btn"><i class="far fa-heart"></i></a>
+        <a href="cart.html" class="icon-btn">
+          <i class="fas fa-shopping-bag"></i>
+          <span class="cart-count">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section"
+      style="padding: 100px 0; background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); position: relative; overflow: hidden;">
+      <div class="container flex align-center justify-between" style="gap: 60px;">
+        <div class="hero-content" style="flex: 1; max-width: 600px;">
+          <h1 style="font-size: 3.5rem; line-height: 1.1; margin-bottom: 24px;">Specialized <span
+              style="color: var(--accent);">Health & Wellness</span> Solutions</h1>
+          <p style="font-size: 1.25rem; color: var(--text-muted); margin-bottom: 40px;">Discrete, Reliable, and
+            High-Quality Sexual Wellness Medicines delivered directly to your door in Pakistan.</p>
+          <div class="hero-btns" style="display: flex; gap: 16px;">
+            <a href="shop.html" class="btn btn-primary">Start Shopping</a>
+            <a href="#categories" class="btn btn-outline">Explore Categories</a>
+          </div>
+
+          <div class="hero-stats" style="margin-top: 60px; display: flex; gap: 40px;">
+            <div>
+              <h3 style="font-size: 1.5rem;">Coming Soon</h3>
+              <p style="color: var(--text-muted); font-size: 0.9rem;">New Products</p>
+            </div>
+            <div>
+              <h3 style="font-size: 1.5rem;">Pakistan</h3>
+              <p style="color: var(--text-muted); font-size: 0.9rem;">Wide Delivery</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-image" style="flex: 1; position: relative;">
+          <div class="hero-img-wrapper"
+            style="width: 100%; border-radius: 20px; box-shadow: var(--shadow-lg); overflow: hidden;">
+            <img src="images/hero-banner.png" alt="Premium Sexual Wellness" style="width: 100%; display: block;">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="section-padding"
+      style="background: var(--white); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+      <div class="container grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 30px;">
+        <div class="benefit-card text-center">
+          <i class="fas fa-truck-moving" style="font-size: 2rem; color: var(--accent); margin-bottom: 20px;"></i>
+          <h3>Fast Shipping</h3>
+          <p style="color: var(--text-muted);">Across all major cities in Pakistan</p>
+        </div>
+        <div class="benefit-card text-center">
+          <i class="fas fa-hand-holding-dollar" style="font-size: 2rem; color: var(--accent); margin-bottom: 20px;"></i>
+          <h3>Cash on Delivery</h3>
+          <p style="color: var(--text-muted);">Available for your peace of mind</p>
+        </div>
+        <div class="benefit-card text-center">
+          <i class="fas fa-shield-halved" style="font-size: 2rem; color: var(--accent); margin-bottom: 20px;"></i>
+          <h3>Secure Checkout</h3>
+          <p style="color: var(--text-muted);">Privacy and security guaranteed</p>
+        </div>
+        <div class="benefit-card text-center">
+          <i class="fas fa-check-circle" style="font-size: 2rem; color: var(--accent); margin-bottom: 20px;"></i>
+          <h3>Quality Tested</h3>
+          <p style="color: var(--text-muted);">Only the best products reach you</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Products Section -->
+    <section id="featured" class="section-padding">
+      <div class="container">
+        <div class="flex justify-between align-center" style="margin-bottom: 40px;">
+          <div>
+            <h2 class="section-title">Trending Now</h2>
+            <p style="color: var(--text-muted);">Our most popular products this week</p>
+          </div>
+          <a href="shop.html" class="btn btn-outline" style="padding: 8px 20px; font-size: 0.9rem;">View All</a>
+        </div>
+
+        <div id="featured-products-grid" class="grid product-grid-mobile-2">
+          <!-- Product cards will be injected here via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Shop By Category -->
+    <section id="categories" class="section-padding" style="background: var(--bg-alt);">
+      <div class="container">
+        <h2 class="section-title text-center">Shop by Category</h2>
+        <p class="section-subtitle text-center">Explore our curated collections</p>
+
+        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 30px;">
+          <a href="shop.html?category=Performance Support" class="card category-card text-center">
+            <i class="fas fa-bolt" style="font-size: 2rem; margin-bottom: 15px; color: var(--accent);"></i>
+            <h3>Performance Support</h3>
+          </a>
+          <a href="shop.html?category=Vitality & Energy" class="card category-card text-center">
+            <i class="fas fa-battery-full" style="font-size: 2rem; margin-bottom: 15px; color: var(--accent);"></i>
+            <h3>Vitality & Energy</h3>
+          </a>
+          <a href="shop.html?category=Men's Wellness" class="card category-card text-center">
+            <i class="fas fa-mars" style="font-size: 2rem; margin-bottom: 15px; color: var(--accent);"></i>
+            <h3>Men's Wellness</h3>
+          </a>
+          <a href="shop.html?category=Women's Wellness" class="card category-card text-center">
+            <i class="fas fa-venus" style="font-size: 2rem; margin-bottom: 15px; color: var(--accent);"></i>
+            <h3>Women's Wellness</h3>
+          </a>
+          <a href="shop.html?category=Natural Herbal" class="card category-card text-center">
+            <i class="fas fa-leaf" style="font-size: 2rem; margin-bottom: 15px; color: var(--accent);"></i>
+            <h3>Natural Herbal</h3>
+          </a>
+          <a href="shop.html?category=Intimate Care" class="card category-card text-center">
+            <i class="fas fa-heart" style="font-size: 2rem; margin-bottom: 15px; color: var(--accent);"></i>
+            <h3>Intimate Care</h3>
+          </a>
+        </div>
+      </div>
+    </section>
+    <!-- Best Deals Section -->
+    <section class="section-padding" style="background: var(--white);">
+      <div class="container">
+        <div class="flex justify-between align-center" style="margin-bottom: 40px;">
+          <div>
+            <h2 class="section-title">Best Deals</h2>
+            <p style="color: var(--text-muted);">Unbeatable prices on your favorite items</p>
+          </div>
+        </div>
+
+        <div id="best-deals-grid" class="grid product-grid-mobile-2">
+          <!-- Product cards will be injected here via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Customer Reviews -->
+    <section class="section-padding">
+      <div class="container">
+        <h2 class="section-title text-center">What Our Customers Say</h2>
+        <div class="grid"
+          style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px;">
+          <div class="card">
+            <div class="flex" style="color: var(--warning); margin-bottom: 10px;">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p style="font-style: italic; margin-bottom: 20px;">"The Shilajit resin is incredibly pure and powerful.
+              High quality and exactly as described. Delivery was super fast within Lahore."</p>
+            <div class="flex align-center" style="gap: 10px;">
+              <div
+                style="width: 40px; height: 40px; border-radius: 50%; background: #eee; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 10px;">
+                A</div>
+              <div>
+                <h4 style="margin: 0;">Ahmed Khan</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted);">Verified Buyer</p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="flex" style="color: var(--warning); margin-bottom: 10px;">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p style="font-style: italic; margin-bottom: 20px;">"Ordered the Female Passion Drops. Pure and authentic.
+              Night Power is my new go-to store for wellness products."</p>
+            <div class="flex align-center" style="gap: 10px;">
+              <div
+                style="width: 40px; height: 40px; border-radius: 50%; background: #eee; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 10px;">
+                S</div>
+              <div>
+                <h4 style="margin: 0;">Saman Bibi</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted);">Verified Buyer</p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="flex" style="color: var(--warning); margin-bottom: 10px;">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+            </div>
+            <p style="font-style: italic; margin-bottom: 20px;">"The Endurance Capsules work exactly as promised. Very
+              discreet packaging and affordable prices compared to other stores."</p>
+            <div class="flex align-center" style="gap: 10px;">
+              <div
+                style="width: 40px; height: 40px; border-radius: 50%; background: #eee; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 10px;">
+                U</div>
+              <div>
+                <h4 style="margin: 0;">Usman Ali</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted);">Verified Buyer</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="section-padding" style="background: var(--primary); color: white;">
+      <div class="container text-center">
+        <h2 style="font-size: 2.5rem; margin-bottom: 10px;">Join the Power Elite</h2>
+        <p style="margin-bottom: 40px; opacity: 0.8;">Subscribe to get notified about new trending products and
+          exclusive deals.</p>
+        <div id="newsletter-message"
+          style="display: none; max-width: 500px; margin: 0 auto 15px; padding: 12px; border-radius: 8px; font-size: 0.95rem; font-weight: 500; transition: all 0.3s ease;">
+        </div>
+        <form id="newsletter-form"
+          style="max-width: 500px; margin: 0 auto; display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+          <div style="flex: 1; min-width: 250px; position: relative;">
+            <input type="email" id="newsletter-email" placeholder="Your email address"
+              style="width: 100%; padding: 15px 25px; border-radius: 50px; border: none;" required>
+            <div id="newsletter-error"
+              style="color: #ff6b6b; font-size: 0.85rem; text-align: left; margin-top: 5px; margin-left: 15px; display: none; position: absolute; width: 100%;">
+            </div>
+          </div>
+          <button type="submit" class="btn btn-accent"
+            style="border-radius: 50px; align-self: flex-start;">Subscribe</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col" style="grid-column: span 2;">
+          <a href="index.html" class="logo" style="margin-bottom: 20px; color: white;">
+            NIGHT<span>POWER</span>
+          </a>
+          <p style="color: #999; margin-bottom: 24px;">Specialized Health & Wellness Solutions in Pakistan. Discrete
+            delivery of quality medicines to your doorstep.</p>
+          <div class="social-links" style="display: flex; gap: 15px; font-size: 1.25rem;">
+            <a href="https://instagram.com/nightpower2026" target="_blank" aria-label="Instagram"><i
+                class="fab fa-instagram"></i></a>
+            <a href="https://tiktok.com/@night.power02" target="_blank" aria-label="TikTok"><i
+                class="fab fa-tiktok"></i></a>
+            <a href="https://www.youtube.com/@NightPowerpk" target="_blank" aria-label="YouTube"><i
+                class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Customer Care</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="shipping.html">Shipping Policy</a></li>
+            <li><a href="refund.html">Refund Policy</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms & Conditions</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="shop.html">Shop All</a></li>
+            <li><a href="shop.html?category=Men's Wellness">Men's Wellness</a></li>
+            <li><a href="cart.html">View Cart</a></li>
+            <li><a href="checkout.html">Checkout</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <ul>
+            <li><i class="fas fa-envelope" style="margin-right: 10px; color: var(--accent);"></i><a
+                href="mailto:nightpowers813@gmail.com">nightpowers813@gmail.com</a></li>
+            <li><i class="fas fa-phone" style="margin-right: 10px; color: var(--accent);"></i><a
+                href="tel:+923336834574">+92 333 6834574</a></li>
+            <li style="display: flex; align-items: flex-start;"><i class="fas fa-map-marker-alt"
+                style="margin-right: 10px; margin-top: 5px; color: var(--accent);"></i><span>Lahore, Pakistan</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Night Power. All Rights Reserved.</p>
+        <div class="payment-icons" style="display: flex; gap: 15px; font-size: 1.5rem; opacity: 0.5;">
+          <i class="fas fa-money-bill-wave"></i>
+          <i class="fab fa-cc-mastercard"></i>
+          <i class="fab fa-cc-visa"></i>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/923336834574" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Scripts -->
+  <script src="scripts/products.js"></script>
+  <script src="scripts/main.js"></script>
+  <script src="scripts/auth.js"></script>
+  <script src="scripts/home.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Explore our curated collection of specialized health and sexual wellness products at Night Power. Discrete delivery in Pakistan.">
+    <meta property="og:title" content="Shop All | Night Power Health & Wellness">
+    <meta property="og:description"
+        content="Explore our curated collection of specialized health and sexual wellness products.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.nightpower.com/shop.html">
+    <link rel="canonical" href="https://www.nightpower.com/shop.html">
+    <title>Shop All | Night Power Health & Wellness</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="scripts/firebase-config.js"></script>
+</head>
+
+<body>
+
+    <!-- Announcement Bar -->
+    <div
+        style="background: var(--primary); color: white; padding: 10px; text-align: center; font-size: 0.85rem; font-weight: 500;">
+        🚚 Fast Shipping Across Pakistan | Cash on Delivery Available
+    </div>
+
+    <header>
+        <div class="container navbar">
+            <a href="index.html" class="logo">
+                NIGHT<span>POWER</span>
+            </a>
+
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="shop.html?category=trending">Trending Now</a></li>
+                    <li><a href="shop.html?category=new">New Arrivals</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <div class="search-container"
+                    style="position: relative; display: none; @media(min-width: 1024px) { display: block; }">
+                    <input type="text" id="shop-search" placeholder="Search products..."
+                        style="padding: 8px 16px; border-radius: 50px; border: 1px solid var(--border-color); width: 220px;">
+                    <i class="fas fa-search" style="position: absolute; right: 15px; top: 12px; color: #aaa;"></i>
+                </div>
+                <button id="theme-toggle" class="icon-btn" aria-label="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="dashboard.html?tab=tab-wishlist" class="icon-btn"><i class="far fa-heart"></i></a>
+                <a href="cart.html" class="icon-btn">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="section-padding" style="padding-top: 40px; background: #fafafa;">
+            <div class="container">
+                <div class="breadcrumb" style="font-size: 0.9rem; color: #666; margin-bottom: 20px;">
+                    <a href="index.html">Home</a> / <span>Shop</span>
+                </div>
+                <h1 id="shop-title" style="font-size: 2.5rem; margin-bottom: 40px;">Explore Our Collection</h1>
+
+                <div class="shop-layout">
+                    <!-- Sidebar Filters -->
+                    <aside class="sidebar">
+                        <div class="filter-section card" style="margin-bottom: 24px; position: sticky; top: 100px;">
+                            <h3
+                                style="font-size: 1.1rem; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+                                Categories</h3>
+                            <ul class="category-list">
+                                <li><a href="#" class="category-item active" data-category="all">All Items</a></li>
+                                <li><a href="#" class="category-item" data-category="Performance Support">Performance
+                                        Support</a></li>
+                                <li><a href="#" class="category-item" data-category="Vitality & Energy">Vitality &
+                                        Energy</a></li>
+                                <li><a href="#" class="category-item" data-category="Men's Wellness">Men's Wellness</a>
+                                </li>
+                                <li><a href="#" class="category-item" data-category="Women's Wellness">Women's
+                                        Wellness</a></li>
+                                <li><a href="#" class="category-item" data-category="Natural Herbal">Natural Herbal</a>
+                                </li>
+                                <li><a href="#" class="category-item" data-category="Intimate Care">Intimate Care</a>
+                                </li>
+                            </ul>
+
+                            <h3
+                                style="font-size: 1.1rem; margin: 30px 0 20px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+                                Price Range</h3>
+                            <div class="price-filter">
+                                <select id="price-sort"
+                                    style="width: 100%; padding: 10px; border: 1px solid #eee; border-radius: 5px;">
+                                    <option value="none">Sort By Price</option>
+                                    <option value="low-high">Price: Low to High</option>
+                                    <option value="high-low">Price: High to Low</option>
+                                </select>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <!-- Products Grid -->
+                    <div class="products-container">
+                        <div id="shop-grid" class="grid product-grid-mobile-2">
+                            <!-- Injected via JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col" style="grid-column: span 2;">
+                    <a href="index.html" class="logo" style="margin-bottom: 20px; color: white;">
+                        NIGHT<span>POWER</span>
+                    </a>
+                    <p style="color: #999; margin-bottom: 24px;">Your ultimate destination for trending lifestyle
+                        products in Pakistan. We bring power to your everyday life with quality tested gear.</p>
+                    <div class="social-links" style="display: flex; gap: 15px; font-size: 1.25rem;">
+                        <a href="https://instagram.com/nightpower2026" target="_blank" aria-label="Instagram"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="https://tiktok.com/@night.power02" target="_blank" aria-label="TikTok"><i
+                                class="fab fa-tiktok"></i></a>
+                        <a href="https://www.youtube.com/@NightPowerpk" target="_blank" aria-label="YouTube"><i
+                                class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col" style="grid-column: span 1;">
+                    <h4>Customer Care</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="shipping.html">Shipping Policy</a></li>
+                        <li><a href="shipping.html">Refund Policy</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="shop.html">Shop All</a></li>
+                        <li><a href="shop.html?category=trending">Trending Now</a></li>
+                        <li><a href="cart.html">View Cart</a></li>
+                        <li><a href="checkout.html">Checkout</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope" style="margin-right: 10px; color: var(--accent);"></i><a
+                                href="mailto:nightpowers813@gmail.com">nightpowers813@gmail.com</a></li>
+                        <li><i class="fas fa-phone" style="margin-right: 10px; color: var(--accent);"></i><a
+                                href="tel:+923336834574">+92 333 6834574</a></li>
+                        <li style="display: flex; align-items: flex-start;"><i class="fas fa-map-marker-alt"
+                                style="margin-right: 10px; margin-top: 5px; color: var(--accent);"></i><span>Lahore,
+                                Pakistan</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Night Power. All Rights Reserved.</p>
+                <div class="payment-icons" style="display: flex; gap: 15px; font-size: 1.5rem; opacity: 0.5;">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-visa"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <style>
+        .category-list li {
+            margin-bottom: 12px;
+        }
+
+        .category-item {
+            color: #666;
+            font-size: 0.95rem;
+            font-weight: 500;
+            display: block;
+            border-left: 3px solid transparent;
+            padding-left: 10px;
+            transition: 0.3s;
+        }
+
+        .category-item:hover,
+        .category-item.active {
+            color: var(--accent);
+            border-left-color: var(--accent);
+        }
+
+        @media (max-width: 900px) {
+            .shop-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            /* Could add filter button toggle later */
+        }
+    </style>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/923336834574" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script src="scripts/products.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/auth.js"></script>
+    <script src="scripts/shop.js"></script>
+</body>
+
+</html>

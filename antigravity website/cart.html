@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description"
+        content="View your cart and proceed to secure checkout for your specialized health and wellness products.">
+    <title>Your Cart | Night Power Health & Wellness</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="scripts/firebase-config.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="container navbar">
+            <a href="index.html" class="logo">
+                NIGHT<span>POWER</span>
+            </a>
+
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="shop.html?category=trending">Trending</a></li>
+                    <li><a href="shop.html?category=fitness">Fitness</a></li>
+                    <li><a href="shop.html?category=beauty">Beauty</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <button id="theme-toggle" class="icon-btn" aria-label="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="dashboard.html?tab=tab-wishlist" class="icon-btn"><i class="far fa-heart"></i></a>
+                <a href="cart.html" class="icon-btn">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main style="min-height: 60vh; padding: 60px 0;">
+        <div class="container">
+            <h1 class="section-title">Your Shopping Cart</h1>
+
+            <div id="cart-container" class="grid" style="grid-template-columns: 2fr 1fr; gap: 40px; margin-top: 40px;">
+                <!-- Cart items will be injected here -->
+                <div id="cart-items-list" class="flex" style="flex-direction: column; gap: 20px;">
+                    <div class="card" style="text-align: center; padding: 40px;">
+                        <p>Loading your cart...</p>
+                    </div>
+                </div>
+
+                <!-- Cart Summary -->
+                <div id="cart-summary" class="card" style="height: fit-content; position: sticky; top: 120px;">
+                    <h3
+                        style="margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">
+                        Order Summary</h3>
+                    <div class="flex justify-between" style="margin-bottom: 15px;">
+                        <span>Subtotal</span>
+                        <span id="cart-subtotal">Rs. 0</span>
+                    </div>
+                    <div class="flex justify-between" style="margin-bottom: 15px;">
+                        <span>Shipping</span>
+                        <span style="color: var(--success); font-weight: 600;">FREE</span>
+                    </div>
+                    <div class="flex justify-between"
+                        style="margin-bottom: 20px; border-top: 1px solid var(--border-color); padding-top: 15px; font-weight: 800; font-size: 1.25rem;">
+                        <span>Total</span>
+                        <span id="cart-total" style="color: var(--accent);">Rs. 0</span>
+                    </div>
+                    <a href="checkout.html" class="btn btn-primary" style="width: 100%;">Proceed to Checkout</a>
+                    <p style="text-align: center; font-size: 0.8rem; color: var(--text-muted); margin-top: 15px;">
+                        <i class="fas fa-truck" style="margin-right: 5px;"></i> Delivery within 3-5 working days
+                    </p>
+                </div>
+            </div>
+
+            <!-- Empty Cart State (hidden by default) -->
+            <div id="empty-cart" class="text-center" style="display: none; padding: 60px 0;">
+                <i class="fas fa-shopping-bag" style="font-size: 4rem; color: #eee; margin-bottom: 20px;"></i>
+                <h2>Your cart is empty</h2>
+                <p style="margin-bottom: 30px; color: var(--text-muted);">Looks like you haven't added anything to your
+                    cart yet.</p>
+                <a href="shop.html" class="btn btn-primary">Start Shopping</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col" style="grid-column: span 2;">
+                    <a href="index.html" class="logo" style="margin-bottom: 20px; color: white;">
+                        NIGHT<span>POWER</span>
+                    </a>
+                    <p style="color: #999; margin-bottom: 24px;">Your ultimate destination for trending lifestyle
+                        products in Pakistan.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Customer Care</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="shipping.html">Shipping Policy</a></li>
+                        <li><a href="shipping.html">Refund Policy</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="shop.html">Shop All</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="cart.html">View Cart</a></li>
+                        <li><a href="checkout.html">Checkout</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope" style="margin-right: 10px; color: var(--accent);"></i><a
+                                href="mailto:nightpowers813@gmail.com">nightpowers813@gmail.com</a></li>
+                        <li><i class="fas fa-phone" style="margin-right: 10px; color: var(--accent);"></i><a
+                                href="tel:+923336834574">+92 333 6834574</a></li>
+                        <li style="display: flex; align-items: flex-start;"><i class="fas fa-map-marker-alt"
+                                style="margin-right: 10px; margin-top: 5px; color: var(--accent);"></i><span>Lahore,
+                                Pakistan</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Night Power. All Rights Reserved.</p>
+                <div class="payment-icons" style="display: flex; gap: 15px; font-size: 1.5rem; opacity: 0.5;">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-visa"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/923336834574" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="scripts/products.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/auth.js"></script>
+    <script src="scripts/cart.js"></script>
+</body>
+
+</html>

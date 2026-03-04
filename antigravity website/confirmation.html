@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your order with Night Power Health & Wellness is confirmed.">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Order Confirmed | Night Power Health & Wellness</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="scripts/firebase-config.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="container navbar">
+            <a href="index.html" class="logo">
+                NIGHT<span>POWER</span>
+            </a>
+        </div>
+    </header>
+
+    <main style="padding: 100px 0; min-height: 70vh; display: flex; align-items: center; justify-content: center;">
+        <div class="container text-center" style="max-width: 600px;">
+            <div class="card"
+                style="padding: 60px 40px; border-radius: 30px; box-shadow: var(--shadow-lg); animation: slideUp 0.8s ease;">
+                <div
+                    style="width: 100px; height: 100px; background: var(--success); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 30px; font-size: 3rem; animation: pulse 2s infinite;">
+                    <i class="fas fa-check"></i>
+                </div>
+                <h1 style="font-size: 2.5rem; margin-bottom: 10px; font-family: var(--font-heading);">Success!</h1>
+                <p style="font-size: 1.2rem; color: var(--text-muted); margin-bottom: 40px;">Thank you for your order.
+                    We've received it and are processing it now.</p>
+
+                <div id="order-details" class="card"
+                    style="background: #f0fdf4; border: 1px solid #bbf7d0; padding: 25px; margin-bottom: 40px; display: none; text-align: left;">
+                    <p style="margin-bottom: 12px; font-size: 1.1rem;">Order ID: <strong id="order-id-display"
+                            style="color: var(--success);">#XXXXXX</strong></p>
+                    <p style="margin-bottom: 12px;">Items: <strong id="order-items-display">0</strong></p>
+                    <p style="margin-bottom: 0;">Total Amount: <strong id="order-total-display">Rs. 0</strong></p>
+                </div>
+
+                <div style="background: var(--bg-alt); padding: 20px; border-radius: 12px; margin-bottom: 40px;">
+                    <p style="font-weight: 600; margin-bottom: 10px;"><i class="fas fa-truck"
+                            style="color: var(--accent); margin-right: 10px;"></i> What's Next?</p>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">Our team will call you at the provided
+                        number within 24 hours to confirm your shipping details.</p>
+                </div>
+
+                <a href="index.html" class="btn btn-primary"
+                    style="padding: 15px 40px; width: 100%; font-size: 1.1rem; border-radius: 12px;">Continue
+                    Shopping</a>
+            </div>
+        </div>
+    </main>
+
+    <footer style="padding: 40px 0;">
+        <div class="container text-center">
+            <p style="color: #666;">© 2026 Night Power. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const lastOrder = JSON.parse(localStorage.getItem('nightpower_last_order'));
+            if (lastOrder) {
+                document.getElementById('order-details').style.display = 'block';
+                document.getElementById('order-id-display').textContent = '#' + lastOrder.id;
+                document.getElementById('order-items-display').textContent = lastOrder.items + ' product(s)';
+                document.getElementById('order-total-display').textContent = 'Rs. ' + lastOrder.total.toLocaleString();
+            }
+        });
+    </script>
+</body>
+
+</html>

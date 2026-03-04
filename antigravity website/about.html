@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Learn more about Night Power, Pakistan's trusted source for specialized health and sexual wellness products.">
+    <title>About Us | Night Power Health & Wellness</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Firebase SDKs -->
+    <script src="public/firebase.bundle.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="container navbar">
+            <a href="index.html" class="logo">
+                NIGHT<span>POWER</span>
+            </a>
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-btn" aria-label="Toggle Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="nav-menu">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop Categories <i class="fas fa-chevron-down"
+                                style="font-size: 0.8rem; margin-left: 5px;"></i></a></li>
+                    <li><a href="about.html" class="active">About Us</a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="icon-btn" aria-label="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="cart.html" class="icon-btn cart-icon">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main style="padding: 60px 0; background: var(--bg-alt); min-height: 80vh;">
+        <div class="container" style="max-width: 800px;">
+            <div class="card" style="padding: 50px;">
+                <h1 style="font-size: 2.5rem; margin-bottom: 20px; color: var(--text-color);">Welcome to Night Power
+                    Store.</h1>
+
+                <div style="font-size: 1.1rem; line-height: 1.8; color: var(--text-color);">
+                    <p style="margin-bottom: 20px;">Night Power Store is a Pakistan-based online store committed to
+                        providing high-quality products at affordable prices. Our mission is simple: to make online
+                        shopping reliable, fast, and convenient for everyone.</p>
+
+                    <p style="margin-bottom: 30px;">We carefully select our products to ensure safety, performance, and
+                        value for money. Whether you are shopping for specialized wellness medicines or natural
+                        supplements, we aim to
+                        deliver products that meet your expectations with absolute privacy.</p>
+
+                    <h3 style="color: var(--accent); margin-top: 40px; margin-bottom: 20px; font-size: 1.5rem;">Why
+                        Choose Us?</h3>
+                    <ul style="list-style-type: none; padding-left: 0; margin-bottom: 30px;">
+                        <li style="margin-bottom: 12px; display: flex; align-items: center;"><i
+                                class="fas fa-check-circle"
+                                style="color: var(--accent); margin-right: 12px; font-size: 1.2rem;"></i> 100% authentic
+                            products</li>
+                        <li style="margin-bottom: 12px; display: flex; align-items: center;"><i
+                                class="fas fa-check-circle"
+                                style="color: var(--accent); margin-right: 12px; font-size: 1.2rem;"></i> Cash on
+                            Delivery available across Pakistan</li>
+                        <li style="margin-bottom: 12px; display: flex; align-items: center;"><i
+                                class="fas fa-check-circle"
+                                style="color: var(--accent); margin-right: 12px; font-size: 1.2rem;"></i> Fast and
+                            secure shipping</li>
+                        <li style="margin-bottom: 12px; display: flex; align-items: center;"><i
+                                class="fas fa-check-circle"
+                                style="color: var(--accent); margin-right: 12px; font-size: 1.2rem;"></i> Friendly
+                            customer support</li>
+                        <li style="margin-bottom: 12px; display: flex; align-items: center;"><i
+                                class="fas fa-check-circle"
+                                style="color: var(--accent); margin-right: 12px; font-size: 1.2rem;"></i> Easy return
+                            policy</li>
+                    </ul>
+
+                    <p style="margin-bottom: 20px; font-weight: 500;">Our goal is to build long-term trust with our
+                        customers by offering transparency, fair pricing, and dependable service.</p>
+
+                    <p style="font-size: 1.2rem; font-weight: 600; color: var(--accent); margin-top: 30px;">Thank you
+                        for choosing Night Power Store. We look forward to serving you.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer
+        style="background-color: var(--bg-card); padding: 60px 0 20px; border-top: 1px solid var(--border-color); margin-top: 0;">
+        <div class="container">
+            <div class="footer-grid"
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px;">
+                <div class="footer-col">
+                    <h3
+                        style="font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 800; margin-bottom: 20px;">
+                        NIGHT<span style="color: var(--accent);">POWER</span>
+                    </h3>
+                    <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">Specialized Health &
+                        Wellness
+                        Solutions in Pakistan. Discrete delivery of quality medicines to your doorstep.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Customer Care</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="shipping.html">Shipping Policy</a></li>
+                        <li><a href="refund.html">Refund Policy</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope" style="margin-right: 10px; color: var(--accent);"></i><a
+                                href="mailto:nightpowers813@gmail.com">nightpowers813@gmail.com</a></li>
+                        <li><i class="fas fa-phone" style="margin-right: 10px; color: var(--accent);"></i><a
+                                href="tel:+923336834574">+92 333 6834574</a></li>
+                        <li style="display: flex; align-items: flex-start;"><i class="fas fa-map-marker-alt"
+                                style="margin-right: 10px; margin-top: 5px; color: var(--accent);"></i><span>Lahore,
+                                Pakistan</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom"
+                style="text-align: center; padding-top: 20px; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.9rem;">
+                <p>&copy; 2026 Night Power. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/923336834574" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="scripts/main.js"></script>
+    <script src="scripts/auth.js"></script>
+</body>
+
+</html>

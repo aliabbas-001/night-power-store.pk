@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Login to your Night Power account to manage your orders for specialized health and wellness products in absolute privacy.">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Login | Night Power Health & Wellness</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="scripts/firebase-config.js"></script>
+    <script src="scripts/main.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="container navbar">
+            <a href="index.html" class="logo">
+                NIGHT<span>POWER</span>
+            </a>
+        </div>
+    </header>
+
+    <main style="padding: 80px 0; background: var(--bg-alt); min-height: 80vh; display: flex; align-items: center;">
+        <div class="container">
+            <div class="card" style="max-width: 450px; margin: 0 auto; padding: 50px;">
+                <h2 style="font-size: 2rem; margin-bottom: 10px; text-align: center;">Welcome Back</h2>
+                <p style="text-align: center; color: var(--text-muted); margin-bottom: 40px;">Login to access your
+                    dashboard and orders.</p>
+
+                <!-- Success Message Container -->
+                <div id="auth-success"
+                    style="display: none; color: #155724; background-color: #d4edda; border: 1px solid #c3e6cb; padding: 12px; border-radius: 8px; margin-bottom: 20px; font-size: 0.9rem;">
+                </div>
+
+                <form id="login-form">
+                    <div class="form-group" style="margin-bottom: 25px;">
+                        <label style="display: block; margin-bottom: 8px;">Email Address</label>
+                        <input type="email" id="login-email" required placeholder="example@mail.com"
+                            style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px;">
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 15px;">
+                        <div class="flex justify-between align-center" style="margin-bottom: 8px;">
+                            <label style="display: block;">Password</label>
+                            <a href="#" id="forgot-password-link"
+                                style="font-size: 0.85rem; color: var(--accent); position: relative; z-index: 10;">Forgot
+                                Password?</a>
+                        </div>
+                        <div style="position: relative;">
+                            <input type="password" id="login-password" required placeholder="Enter your password"
+                                style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; padding-right: 40px;">
+                            <button type="button" id="toggle-password"
+                                style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--text-muted); font-size: 1.1rem; padding: 5px;">
+                                <i class="far fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary"
+                        style="width: 100%; padding: 15px; font-size: 1.1rem; margin-top: 25px;">Login</button>
+                </form>
+
+                <div style="margin-top: 30px; text-align: center; font-size: 0.95rem;">
+                    Don't have an account? <a href="signup.html" style="color: var(--accent); font-weight: 600;">Signup
+                        here</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="scripts/auth.js"></script>
+    <script>
+        // Toggle Password Visibility
+        const togglePassword = document.getElementById('toggle-password');
+        const passwordInput = document.getElementById('login-password');
+
+        togglePassword.addEventListener('click', () => {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            togglePassword.innerHTML = type === 'password' ? '<i class="far fa-eye"></i>' : '<i class="far fa-eye-slash"></i>';
+        });
+
+        // Forgot Password Logic
+        document.getElementById('forgot-password-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value.trim();
+            const form = document.getElementById('login-form');
+            const successDiv = document.getElementById('auth-success');
+
+            // Hide previous messages
+            successDiv.style.display = 'none';
+            const existingError = form.querySelector('.auth-error');
+            if (existingError) existingError.remove();
+
+            if (!email) {
+                showAuthError(form, "Please enter your email address first, then click 'Forgot Password?'.");
+                document.getElementById('login-email').focus();
+                return;
+            }
+
+            // Firebase Password Reset
+            const originalText = e.target.textContent;
+            e.target.textContent = 'Sending...';
+            e.target.style.pointerEvents = 'none';
+
+            firebase.auth().sendPasswordResetEmail(email)
+                .then(() => {
+                    successDiv.textContent = `Password reset link has been sent to ${email}`;
+                    successDiv.style.display = 'block';
+                })
+                .catch((error) => {
+                    let friendlyError = error.message;
+                    if (error.code === 'auth/user-not-found') {
+                        friendlyError = "No account found with this email address.";
+                    }
+                    showAuthError(form, friendlyError);
+                })
+                .finally(() => {
+                    e.target.textContent = originalText;
+                    e.target.style.pointerEvents = 'auto';
+                });
+        });
+
+        // Standard Login
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            const form = e.target;
+
+            // Hide success message if visible
+            document.getElementById('auth-success').style.display = 'none';
+
+            // Firebase Login
+            firebase.auth().signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    window.location.href = 'dashboard.html';
+                })
+                .catch((error) => {
+                    let friendlyError = error.message;
+
+                    // Catch Firebase Auth generic errors
+                    if (error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found' || error.code === 'auth/invalid-login-credentials') {
+                        friendlyError = "The email or password you entered is incorrect.";
+                    }
+
+                    // Catch raw unparsed JSON string errors returned by Firebase Rest API
+                    if (typeof friendlyError === 'string' && friendlyError.includes('INVALID_LOGIN_CREDENTIALS')) {
+                        friendlyError = "The email or password you entered is incorrect.";
+                    }
+
+                    showAuthError(form, friendlyError);
+                });
+        });
+    </script>
+</body>
+
+</html>

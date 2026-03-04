@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Create your Night Power account to securely shop for premium specialized health and wellness products.">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Signup | Night Power Health & Wellness</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="scripts/firebase-config.js"></script>
+    <script src="scripts/main.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="container navbar">
+            <a href="index.html" class="logo">
+                NIGHT<span>POWER</span>
+            </a>
+        </div>
+    </header>
+
+    <main style="padding: 80px 0; background: var(--bg-alt); min-height: 80vh; display: flex; align-items: center;">
+        <div class="container">
+            <div class="card" style="max-width: 500px; margin: 0 auto; padding: 50px;">
+                <h2 style="font-size: 2rem; margin-bottom: 10px; text-align: center;">Join Night Power</h2>
+                <p style="text-align: center; color: var(--text-muted); margin-bottom: 40px;">Create an account to track
+                    orders and save favorites.</p>
+
+                <form id="signup-form">
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 8px;">Full Name</label>
+                        <input type="text" id="signup-name" required placeholder="Enter your full name"
+                            style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px;">
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 8px;">Email Address</label>
+                        <input type="email" id="signup-email" required placeholder="example@mail.com"
+                            style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px;">
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 8px;">Phone Number</label>
+                        <input type="tel" id="signup-phone" required placeholder="03xx-xxxxxxx"
+                            style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px;">
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 8px;">Password</label>
+                        <div style="position: relative;">
+                            <input type="password" id="signup-password" required placeholder="Minimum 6 characters"
+                                style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; padding-right: 40px;">
+                            <button type="button" id="toggle-signup-password"
+                                style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--text-muted); font-size: 1.1rem; padding: 5px;">
+                                <i class="far fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 30px;">
+                        <label style="display: block; margin-bottom: 8px;">Confirm Password</label>
+                        <div style="position: relative;">
+                            <input type="password" id="signup-confirm" required placeholder="Repeat your password"
+                                style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; padding-right: 40px;">
+                            <button type="button" id="toggle-signup-confirm"
+                                style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--text-muted); font-size: 1.1rem; padding: 5px;">
+                                <i class="far fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary"
+                        style="width: 100%; padding: 15px; font-size: 1.1rem;">Register Now</button>
+                </form>
+
+                <div style="margin-top: 30px; text-align: center; font-size: 0.95rem;">
+                    Already have an account? <a href="login.html" style="color: var(--accent); font-weight: 600;">Login
+                        here</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="scripts/auth.js"></script>
+    <script>
+        // Toggle Password Visibility
+        const toggleSignupPassword = document.getElementById('toggle-signup-password');
+        const signupPasswordInput = document.getElementById('signup-password');
+
+        toggleSignupPassword.addEventListener('click', () => {
+            const type = signupPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            signupPasswordInput.setAttribute('type', type);
+            toggleSignupPassword.innerHTML = type === 'password' ? '<i class="far fa-eye"></i>' : '<i class="far fa-eye-slash"></i>';
+        });
+
+        const toggleSignupConfirm = document.getElementById('toggle-signup-confirm');
+        const signupConfirmInput = document.getElementById('signup-confirm');
+
+        toggleSignupConfirm.addEventListener('click', () => {
+            const type = signupConfirmInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            signupConfirmInput.setAttribute('type', type);
+            toggleSignupConfirm.innerHTML = type === 'password' ? '<i class="far fa-eye"></i>' : '<i class="far fa-eye-slash"></i>';
+        });
+
+        document.getElementById('signup-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const phone = document.getElementById('signup-phone').value;
+            const password = document.getElementById('signup-password').value;
+            const confirm = document.getElementById('signup-confirm').value;
+
+            const form = e.target;
+
+            // Validation
+            if (!validateEmail(email)) {
+                return showAuthError(form, 'Please enter a valid email address.');
+            }
+            if (password.length < 6) {
+                return showAuthError(form, 'Password must be at least 6 characters long.');
+            }
+            if (password !== confirm) {
+                return showAuthError(form, 'Passwords do not match.');
+            }
+
+            // Firebase Signup
+            firebase.auth().createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+
+                    // Update profile for Auth
+                    return user.updateProfile({
+                        displayName: name
+                    }).then(() => {
+                        // Save extra data to Firestore
+                        return firebase.firestore().collection('users').doc(user.uid).set({
+                            name: name,
+                            email: email,
+                            phone: phone,
+                            address: "", // Placeholder for profile edit
+                            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                        });
+                    });
+                })
+                .then(() => {
+                    window.location.href = 'dashboard.html';
+                })
+                .catch((error) => {
+                    showAuthError(form, error.message);
+                });
+        });
+    </script>
+</body>
+
+</html>
